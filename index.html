@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>Molar Mass Calculator</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+        <style>
+            body {
+                text-align: center;
+                margin: 0 auto;
+            }
+            table {
+                text-align: center;
+                margin: 0 auto;
+                border: 4px, solid black;
+            }
+            td {
+                vertical-align: middle;
+                line-height: 51px;
+            }
+            .elemento {
+                margin: 0.1px; 
+                display: inline-block;
+                width: 53px;      
+                height: 53px;     
+                text-align: center;
+                border: 1px solid black;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 30px;
+                font-family: "Roboto Slab";
+                color: black;
+                background-color: white;;
+                transition: all 0.3s ease;
+                    
+            }
+            .elemento:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
+            }
+            button {
+                background-color: #1a3a5c;
+                color: white;
+                font-size: 16px;           /* Tamaño de fuente legible */
+                font-weight: bold;         /* Resaltado del texto */
+                padding: 12px 24px;        /* Espaciado interno */
+                border: none;              /* Sin borde por defecto */
+                border-radius: 8px;        /* Esquinas redondeadas */
+                cursor: pointer;           /* Cambia el cursor al pasar por encima */
+                transition: all 0.3s ease; /* Transición suave para los efectos */
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+                margin-top: 15px;
+                margin-right: 10px;
+                }
+
+                /* Efecto al pasar el cursor (Hover) */
+            button:hover {
+                background-color: #2e5f8a; /* Un tono de azul más oscuro */
+                transform: translateY(-2px); /* Eleva ligeramente el botón */
+                box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+                }
+
+                /* Efecto al hacer clic (Active) */
+            .button:active {
+                transform: translateY(0); /* Vuelve a su posición original */
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+            }
+
+            h1, h2, h3 {
+                font-family: "Roboto Slab"; 
+                color: #1a3a5c;
+            }
+            h1 {
+                font-size: 50px;
+                margin-bottom: 30px; 
+
+            }
+            h2 {
+                font-size: 35px;
+                margin-top: 30px;
+            }
+            h3 {
+                font-size: 25px;
+                
+            }
+
+            .no_metal {
+                background-color: #e6f0ff;
+                color: #0060f0;
+            }
+            .metal_alcaino {
+                background-color: #dbf8ff;
+                color: #00758c;
+            }
+            .alcalinoterreo {
+                background-color: #ffebeb;
+                color: #d60024;
+            }
+            .metal_transicion {
+                background-color: #f5ecfd;
+                color: #6232ec;
+            }
+            .lantanido {
+                background-color: #e6f5ff;
+                color: #003355;
+            }
+            .actinido {
+                background-color: #ffeadb;
+                color: #c73200;
+            }
+            .postransicional {
+                background-color: #dcfaeb;
+                color: #012d01;
+            }
+            .metaloide {
+                background-color: #fef9e6;
+                color: #945700;
+            }
+            .gas_noble {
+                background-color: #ffebee;
+                color: #cd1d5e;
+            }
+            .desconocido {
+                background-color: #e9e9ec;
+                color: #494258;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Molar Mass Calculator</h1>
+        <table>
+            <tr>
+                <td><p class="elemento no_metal" id="H">H</p></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><p class="elemento gas_noble" id="He">He</p></td>
+            </tr>
+            <tr>
+                <td><p class="elemento metal_alcaino" id="Li">Li</p></td>
+                <td><p class="elemento alcalinoterreo" id="Be">Be</p></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><p class="elemento metaloide" id="B">B</p></td>
+                <td><p class="elemento no_metal" id="C">C</p></td>
+                <td><p class="elemento no_metal" id="N">N</p></td>
+                <td><p class="elemento no_metal" id="O">O</p></td>
+                <td><p class="elemento no_metal" id="F">F</p></td>
+                <td><p class="elemento gas_noble" id="Ne">Ne</p></td>
+            </tr>
+            <tr>
+                <td><p class="elemento metal_alcaino" id="Na">Na</p></td>
+                <td><p class="elemento alcalinoterreo" id="Mg">Mg</p></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><p class="elemento postransicional" id="Al">Al</p></td>
+                <td><p class="elemento metaloide" id="Si">Si</p></td>
+                <td><p class="elemento no_metal" id="P">P</p></td>
+                <td><p class="elemento no_metal" id="S">S</p></td>
+                <td><p class="elemento no_metal" id="Cl">Cl</p></td>
+                <td><p class="elemento gas_noble" id="Ar">Ar</p></td>
+            </tr>
+            <tr>
+                <td><p class="elemento metal_alcaino" id="K">K</p></td>
+                <td><p class="elemento alcalinoterreo" id="Ca">Ca</p></td>
+                <td><p class="elemento metal_transicion" id="Sc">Sc</p></td>
+                <td><p class="elemento metal_transicion" id="Ti">Ti</p></td>
+                <td><p class="elemento metal_transicion" id="V">V</p></td>
+                <td><p class="elemento metal_transicion" id="Cr">Cr</p></td>
+                <td><p class="elemento metal_transicion" id="Mn">Mn</p></td>
+                <td><p class="elemento metal_transicion" id="Fe">Fe</p></td>
+                <td><p class="elemento metal_transicion" id="Co">Co</p></td>
+                <td><p class="elemento metal_transicion" id="Ni">Ni</p></td>
+                <td><p class="elemento metal_transicion" id="Cu">Cu</p></td>
+                <td><p class="elemento metal_transicion" id="Zn">Zn</p></td>
+                <td><p class="elemento postransicional" id="Ga">Ga</p></td>
+                <td><p class="elemento metaloide" id="Ge">Ge</p></td>
+                <td><p class="elemento metaloide" id="As">As</p></td>
+                <td><p class="elemento no_metal" id="Se">Se</p></td>
+                <td><p class="elemento no_metal" id="Br">Br</p></td>
+                <td><p class="elemento gas_noble" id="Kr">Kr</p></td>
+            </tr>
+            <tr>
+                <td><p class="elemento metal_alcaino" id="Rb">Rb</p></td>
+                <td><p class="elemento alcalinoterreo" id="Sr">Sr</p></td>
+                <td><p class="elemento metal_transicion" id="Y">Y</p></td>
+                <td><p class="elemento metal_transicion" id="Zr">Zr</p></td>
+                <td><p class="elemento metal_transicion" id="Nb">Nb</p></td>
+                <td><p class="elemento metal_transicion" id="Mo">Mo</p></td>
+                <td><p class="elemento metal_transicion" id="Tc">Tc</p></td>
+                <td><p class="elemento metal_transicion" id="Ru">Ru</p></td>
+                <td><p class="elemento metal_transicion" id="Rh">Rh</p></td>
+                <td><p class="elemento metal_transicion" id="Pd">Pd</p></td>
+                <td><p class="elemento metal_transicion" id="Ag">Ag</p></td>
+                <td><p class="elemento metal_transicion" id="Cd">Cd</p></td>
+                <td><p class="elemento postransicional" id="In">In</p></td>
+                <td><p class="elemento postransicional" id="Sn">Sn</p></td>
+                <td><p class="elemento metaloide" id="Sb">Sb</p></td>
+                <td><p class="elemento metaloide" id="Te">Te</p></td>
+                <td><p class="elemento no_metal" id="I">I</p></td>
+                <td><p class="elemento gas_noble" id="Xe">Xe</p></td>
+            </tr>
+            <tr>
+                <td><p class="elemento metal_alcaino" id="Cs">Cs</p></td>
+                <td><p class="elemento alcalinoterreo" id="Ba">Ba</p></td>
+                <td><p class="elemento lantanido" id="La">La</p></td>
+                <td><p class="elemento metal_transicion" id="Hf">Hf</p></td>
+                <td><p class="elemento metal_transicion" id="Ta">Ta</p></td>
+                <td><p class="elemento metal_transicion" id="W">W</p></td>
+                <td><p class="elemento metal_transicion" id="Re">Re</p></td>
+                <td><p class="elemento metal_transicion" id="Os">Os</p></td>
+                <td><p class="elemento metal_transicion" id="Ir">Ir</p></td>
+                <td><p class="elemento metal_transicion" id="Pt">Pt</p></td>
+                <td><p class="elemento metal_transicion" id="Au">Au</p></td>
+                <td><p class="elemento metal_transicion" id="Hg">Hg</p></td>
+                <td><p class="elemento postransicional" id="Tl">Tl</p></td>
+                <td><p class="elemento postransicional" id="Pb">Pb</p></td>
+                <td><p class="elemento postransicional" id="Bi">Bi</p></td>
+                <td><p class="elemento postransicional" id="Po">Po</p></td>
+                <td><p class="elemento postransicional" id="At">At</p></td>
+                <td><p class="elemento gas_noble" id="Rn">Rn</p></td>
+            </tr>
+            <tr>
+                <td><p class="elemento metal_alcaino" id="Fr">Fr</p></td>
+                <td><p class="elemento alcalinoterreo" id="Ra">Ra</p></td>
+                <td><p class="elemento actinido" id="Ac">Ac</p></td>
+                <td><p class="elemento metal_transicion" id="Rf">Rf</p></td>
+                <td><p class="elemento metal_transicion" id="Db">Db</p></td>
+                <td><p class="elemento metal_transicion" id="Sg">Sg</p></td>
+                <td><p class="elemento metal_transicion" id="Bh">Bh</p></td>
+                <td><p class="elemento metal_transicion" id="Hs">Hs</p></td>
+                <td><p class="elemento desconocido" id="Mt">Mt</p></td>
+                <td><p class="elemento desconocido" id="Ds">Ds</p></td>
+                <td><p class="elemento desconocido" id="Rg">Rg</p></td>
+                <td><p class="elemento desconocido" id="Cn">Cn</p></td>
+                <td><p class="elemento desconocido" id="Nh">Nh</p></td>
+                <td><p class="elemento desconocido" id="Fl">Fl</p></td>
+                <td><p class="elemento desconocido" id="Mc">Mc</p></td>
+                <td><p class="elemento desconocido" id="Lv">Lv</p></td>
+                <td><p class="elemento desconocido" id="Ts">Ts</p></td>
+                <td><p class="elemento desconocido" id="Og">Og</p></td> 
+            </tr>
+            <tr style="height: 20px"></tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><p class="elemento lantanido" id="Ce">Ce</p></td>
+                <td><p class="elemento lantanido" id="Pr">Pr</p></td>
+                <td><p class="elemento lantanido" id="Nd">Nd</p></td>
+                <td><p class="elemento lantanido" id="Pm">Pm</p></td>
+                <td><p class="elemento lantanido" id="Sm">Sm</p></td>
+                <td><p class="elemento lantanido" id="Eu">Eu</p></td>
+                <td><p class="elemento lantanido" id="Gd">Gd</p></td>
+                <td><p class="elemento lantanido" id="Tb">Tb</p></td>
+                <td><p class="elemento lantanido" id="Dy">Dy</p></td>
+                <td><p class="elemento lantanido" id="Ho">Ho</p></td>
+                <td><p class="elemento lantanido" id="Er">Er</p></td>
+                <td><p class="elemento lantanido" id="Tm">Tm</p></td>
+                <td><p class="elemento lantanido" id="Yb">Yb</p></td>
+                <td><p class="elemento lantanido" id="Lu">Lu</p></td>
+                <td></td> 
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><p class="elemento actinido" id="Th">Th</p></td>
+                <td><p class="elemento actinido" id="Pa">Pa</p></td>
+                <td><p class="elemento actinido" id="U">U</p></td>
+                <td><p class="elemento actinido" id="Np">Np</p></td>
+                <td><p class="elemento actinido" id="Pu">Pu</p></td>
+                <td><p class="elemento actinido" id="Am">Am</p></td>
+                <td><p class="elemento actinido" id="Cm">Cm</p></td>
+                <td><p class="elemento actinido" id="Bk">Bk</p></td>
+                <td><p class="elemento actinido" id="Cf">Cf</p></td>
+                <td><p class="elemento actinido" id="Es">Es</p></td>
+                <td><p class="elemento actinido" id="Fm">Fm</p></td>
+                <td><p class="elemento actinido" id="Md">Md</p></td>
+                <td><p class="elemento actinido" id="No">No</p></td>
+                <td><p class="elemento actinido" id="Lr">Lr</p></td>
+                <td></td> 
+            </tr>
+        </table>
+
+        <h2>Resultado: <span id="cuenta">0</span>g</p>
+        <h3>Último elemento agregado: <span id="ultimo"></span></p>
+        <button type="submit" id="borrar">Borrar cuenta</button>
+        <button type="submit" id="borrar_ultimo">Borrar último elemento agregado</button>
+        <script>
+            masaMolar = {
+            "H": 1.01,
+            "He": 4.00,
+            "Li": 6.94,
+            "Be": 9.01,
+            "B": 10.81,
+            "C": 12.01,
+            "N": 14.01,
+            "O": 16.00,
+            "F": 19.00,
+            "Ne": 20.18,
+            "Na": 22.99,
+            "Mg": 24.31,
+            "Al": 26.98,
+            "Si": 28.09,
+            "P": 30.97,
+            "S": 32.06,
+            "Cl": 35.45,
+            "Ar": 39.95,
+            "K": 39.10,
+            "Ca": 40.08,
+            "Sc": 44.96,
+            "Ti": 47.87,
+            "V": 50.94,
+            "Cr": 52.00,
+            "Mn": 54.94,
+            "Fe": 55.85,
+            "Co": 58.93,
+            "Ni": 58.69,
+            "Cu": 63.55,
+            "Zn": 65.38,
+            "Ga": 69.72,
+            "Ge": 72.63,
+            "As": 74.92,
+            "Se": 78.97,
+            "Br": 79.90,
+            "Kr": 83.80,
+            "Rb": 85.47,
+            "Sr": 87.62,
+            "Y": 88.91,
+            "Zr": 91.22,
+            "Nb": 92.91,
+            "Mo": 95.95,
+            "Tc": 98.00,
+            "Ru": 101.07,
+            "Rh": 102.91,
+            "Pd": 106.42,
+            "Ag": 107.87,
+            "Cd": 112.41,
+            "In": 114.82,
+            "Sn": 118.71,
+            "Sb": 121.76,
+            "Te": 127.60,
+            "I": 126.90,
+            "Xe": 131.29,
+            "Cs": 132.91,
+            "Ba": 137.33,
+            "La": 138.91,
+            "Ce": 140.12,
+            "Pr": 140.91,
+            "Nd": 144.24,
+            "Pm": 145.00,
+            "Sm": 150.36,
+            "Eu": 151.96,
+            "Gd": 157.25,
+            "Tb": 158.93,
+            "Dy": 162.50,
+            "Ho": 164.93,
+            "Er": 167.26,
+            "Tm": 168.93,
+            "Yb": 173.05,
+            "Lu": 174.97,
+            "Hf": 178.49,
+            "Ta": 180.95,
+            "W": 183.84,
+            "Re": 186.21,
+            "Os": 190.23,
+            "Ir": 192.22,
+            "Pt": 195.08,
+            "Au": 196.97,
+            "Hg": 200.59,
+            "Tl": 204.38,
+            "Pb": 207.20,
+            "Bi": 208.98,
+            "Po": 209.00,
+            "At": 210.00,
+            "Rn": 222.00,
+            "Fr": 223.00,
+            "Ra": 226.00,
+            "Ac": 227.00,
+            "Th": 232.04,
+            "Pa": 231.04,
+            "U": 238.03,
+            "Np": 237.00,
+            "Pu": 244.00,
+            "Am": 243.00,
+            "Cm": 247.00,
+            "Bk": 247.00,
+            "Cf": 251.00,
+            "Es": 252.00,
+            "Fm": 257.00,
+            "Md": 258.00,
+            "No": 259.00,
+            "Lr": 266.00,
+            "Rf": 267.00,
+            "Db": 268.00,
+            "Sg": 269.00,
+            "Bh": 270.00,
+            "Hs": 277.00,
+            "Mt": 278.00,
+            "Ds": 281.00,
+            "Rg": 282.00,
+            "Cn": 285.00,
+            "Nh": 286.00,
+            "Fl": 289.00,
+            "Mc": 290.00,
+            "Lv": 293.00,
+            "Ts": 294.00,
+            "Og": 294.00,
+        }
+            let cuenta = 0;
+            let ultimo_click = 0;
+            let historial_click = []
+            const elementos = document.querySelectorAll(".elemento")
+
+            elementos.forEach(elemento => {
+                elemento.addEventListener("click", function() {
+                    let elementoClick = String(elemento.id)
+
+                    let valor = masaMolar[elementoClick]
+                    cuenta += valor;
+
+                    cuenta = Math.round(cuenta * 100) / 100;
+                    document.querySelector("#cuenta").innerHTML = cuenta;
+                    document.querySelector("#ultimo").innerHTML = elementoClick;
+
+                    historial_click.unshift(elementoClick)
+                })
+            })
+            document.querySelector("#borrar").addEventListener("click", function() {
+                cuenta = 0;
+                let valor = 0;
+                historial_click = [];
+                document.querySelector("#cuenta").innerHTML = cuenta;
+                document.querySelector("#ultimo").innerHTML = "";
+            })
+            document.querySelector("#borrar_ultimo").addEventListener("click", function() {
+                if (historial_click.length > 0){
+                    ultimo_click = historial_click[0]
+                    let valor = masaMolar[ultimo_click];
+                    cuenta -= valor
+                } else {
+                    let valor = 0;
+                }
+                cuenta = Math.round(cuenta * 100) / 100;
+                document.querySelector("#cuenta").innerHTML = cuenta;
+                historial_click.shift()
+                if (historial_click.length > 0) {
+                    document.querySelector("#ultimo").innerHTML = historial_click[0];
+                } else {
+                    document.querySelector("#ultimo").innerHTML = "";
+                }
+            })
+        </script>
+    </body>
+</html>
